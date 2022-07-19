@@ -1,5 +1,14 @@
 from django.shortcuts import render
 
+from employee_register.form import EmployeeForm
+
 # Create your views here.
-def index(request):
-    return render(request,template_name='employee_register/index.html')
+def employee_list(request):
+    return render(request,'employee_register/employee_list.html')
+
+def employee_form(request):
+    form = EmployeeForm()
+    return render(request,'employee_register/employee_form.html',{'form':form})
+
+def employee_delete(request):
+    return render(request,'employee_register/employee_delete.html')
