@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'employee_register.apps.EmployeeRegisterConfig',
     'crispy_forms',
     "crispy_bootstrap5",
+    'fontawesomefree'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

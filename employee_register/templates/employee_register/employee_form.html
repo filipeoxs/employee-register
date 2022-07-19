@@ -4,8 +4,8 @@
 <form action="" method="post" autocomplete="off">
     {% csrf_token %}
     {{form|crispy}}
-    <button type="submit" class="btn btn-primary">Register</button>
-    <button type="button" class="btn btn-warning">Clear</button>
+    <button type="submit" class="btn btn-primary"> <i class="fa-solid fa-database"></i> Register</button>
+    <button type="button" class="btn btn-warning"><i class="fa-solid fa-delete-left"></i> Clear</button>
 </form>
 
 {% endblock %}
