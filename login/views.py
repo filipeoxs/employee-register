@@ -1,6 +1,7 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm,PasswordResetForm
 # Create your views here.
 
 def login_user(request):
@@ -27,6 +28,6 @@ def register(request):
         form_usuario = UserCreationForm()
     return render(request, 'login/register.html', {'form': form_usuario})
 
-'''def forgot(request):
-    form = ForgotForm(request.POST)
-    return render(request,'login/forget_password.html',{'form':form})'''
+def forgot(request):
+    form = PasswordResetForm()
+    return render(request,'login/forget_password.html',{'form':form})
