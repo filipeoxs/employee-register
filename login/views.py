@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import User
-from .form import UserForm
+from .form import ForgotForm, UserForm, LoginForm
 
 # Create your views here.
 def login(request):
-    return render(request, 'login/login.html')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            login(request,)
+    return render(request, 'login/login.html',{'form':form})
 
 def register(request):
     if request.method == 'POST':
@@ -12,10 +15,11 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user.save()
-            return redirect ('login/')
+            return redirect ('/')
     else:
         form = UserForm()
     return render(request,'login/register.html',{'form':form})
 
 def forgot(request):
-    return render(request,'login/forget_password.html')
+    form = ForgotForm(request.POST)
+    return render(request,'login/forget_password.html',{'form':form})

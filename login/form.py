@@ -9,6 +9,21 @@ class UserForm(forms.ModelForm):
             'email':'E-mail',
             'name':'Full Name',
             'password': 'Password',
-            'created_at' : 'Created At',
-            'updated_at' : 'Updated At'
+        }
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email','password']
+        labels = {
+            'email':'E-mail',
+            'password': 'Password',
+        }
+        
+class ForgotForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+        labels = {
+            'email':'E-mail',
         }
