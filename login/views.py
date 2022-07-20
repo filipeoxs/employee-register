@@ -1,25 +1,32 @@
 from django.shortcuts import render, redirect
-from .form import ForgotForm, UserForm, LoginForm
-
+from django.contrib.auth import authenticate,login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Create your views here.
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            login(request,)
-    return render(request, 'login/login.html',{'form':form})
+
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('employee/')
+        else:
+            form_login = AuthenticationForm()
+    else:
+        form_login = AuthenticationForm()
+    return render(request, 'login/login.html', {'form': form_login})
 
 def register(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.save()
-            return redirect ('/')
+    if request.method == "POST":
+        form_usuario = UserCreationForm(request.POST)
+        if form_usuario.is_valid():
+            form_usuario.save()
+            return redirect('/')
     else:
-        form = UserForm()
-    return render(request,'login/register.html',{'form':form})
+        form_usuario = UserCreationForm()
+    return render(request, 'login/register.html', {'form': form_usuario})
 
-def forgot(request):
+'''def forgot(request):
     form = ForgotForm(request.POST)
-    return render(request,'login/forget_password.html',{'form':form})
+    return render(request,'login/forget_password.html',{'form':form})'''
