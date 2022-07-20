@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'employee_register.apps.EmployeeRegisterConfig',
+    'login.apps.LoginConfig',
     'crispy_forms',
     "crispy_bootstrap5",
     'fontawesomefree'
