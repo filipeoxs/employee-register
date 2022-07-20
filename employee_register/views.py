@@ -2,10 +2,13 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Employee
 from employee_register.form import EmployeeForm
+from django.contrib import messages
 
 # Create your views here.
 def employee_list(request):
-    return render(request,'employee_register/employee_list.html',{'employee_list':Employee.objects.all().order_by('fullname')})
+    return render(request,'employee_register/employee_list.html',{
+        'employee_list':Employee.objects.all().order_by('fullname'),
+        'count_items':Employee.objects.count()})
 
 def employee_form(request):
     if request.method == 'POST':
@@ -36,7 +39,8 @@ def search_employee(request):
     #print(search_user)
     if search_user:
         user = Employee.objects.filter(Q(fullname__icontains = search_user))
+        messages.add_message(request, messages.INFO,f'Usuário {search_user} encontrado.')
     else:
-        
+        messages.add_message(request, messages.INFO,f'Usuário {search_user} não cadastrado.')
         user = Employee.objects.all()
     return render(request,'employee_register/employee_list.html',{'employee_list':user})

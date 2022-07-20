@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <!--Search Field-->
   <div class="p-5 mb-2 bg-light rounded-3">
     <form action="{% url 'employee_search' %}" class="form-iline">
       <div class="input-group mb-1 ">
@@ -22,10 +23,22 @@
         <input type="text" name="username" id="username" placeholder="Name" class="form-control">
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
+      <!--Messages-->
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          {% endfor %}
+      </div>
+      {% endif %}
     </form>
+    <a href="{% url 'employee_list' %}" class="btn btn-success mt-2">Home page</a>
+    <!--APP-->
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">Employee Register</h1>
       <p class="col-md-8 fs-4">Python django project implementing CRUD operations</p>
+      <span class="form-text">Employees Registered: {{count_items}}</span>
       <hr>
       {% block content %}{% endblock %}
     </div>

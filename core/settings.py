@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'fontawesomefree'
 ]
 
+#Configuração do STORAGE das Messages
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
