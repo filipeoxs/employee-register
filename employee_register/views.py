@@ -3,16 +3,15 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import Employee
 from employee_register.form import EmployeeForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url='/')
+
 def employee_list(request):
     return render(request,'employee_register/employee_list.html',{
         'employee_list':Employee.objects.all().order_by('fullname'),
         'count_items':Employee.objects.count()})
     
-@login_required(login_url='/')
+
 def employee_form(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -24,7 +23,7 @@ def employee_form(request):
         form = EmployeeForm()
     return render(request,'employee_register/employee_form.html',{'form':form})
 
-@login_required(login_url='/')
+
 def employee_update(request,id):
     obj = get_object_or_404(Employee, id = id)
     form = EmployeeForm(request.POST or None, instance= obj)
@@ -33,7 +32,7 @@ def employee_update(request,id):
         return redirect('/')
     return render(request,'employee_register/employee_form.html',{'form':form})
 
-@login_required(login_url='/')
+
 def employee_delete(request,id):
     obj = get_object_or_404(Employee, id= id)
     obj.delete()
