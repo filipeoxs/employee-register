@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&u5i1r#sj%l^(t@wru^to-6bs5#+l46$$%_lx+%o11*tsyu2eu
 DEBUG = True
 
 #HOST AZURE
-ALLOWED_HOSTS = ['djangoemployee.azurewebsites.net']
+ALLOWED_HOSTS = ['djangoemployee.azurewebsites.net','*']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'employee_register.apps.EmployeeRegisterConfig',
-    'login.apps.LoginConfig',
     'crispy_forms',
     "crispy_bootstrap5",
     'fontawesomefree'
@@ -88,11 +87,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'dc1hce0hb0gdav',
-        'USER':'tcxbtfniadwcql',
-        'PASSWORD':'6ce984f4ed5fba3e91f32e91a31d2c7d6a54d64fc8eaef3ac56d159db19c3be0',
-        'HOST':'ec2-54-87-179-4.compute-1.amazonaws.com',
-        'PORT':'5432'
+        'NAME':'employee_register',
+        'USER':'postgres',
+        'PASSWORD':'admin',
+        'HOST':'localhost'
     }
 }
 
